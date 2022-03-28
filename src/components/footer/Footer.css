@@ -1,0 +1,10 @@
+footer {
+    padding: 10px;
+    background-color: var(--black);
+}
+footer p {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: var(--white);
+    font-size: .8em;
+    text-align: center;
+}

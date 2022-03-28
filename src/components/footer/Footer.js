@@ -1,9 +1,12 @@
 import React from 'react';
+import './Footer.css';
 
 function Footer() {
     return (
-        <footer>
-            <p>In opdracht van Novi Hogeschool &copy; 2022</p>
+        <footer className="outer-container">
+            <div className="inner-container">
+                <p>In opdracht van NOVI Hogeschool &copy; 2022</p>
+            </div>
         </footer>
     );
 }

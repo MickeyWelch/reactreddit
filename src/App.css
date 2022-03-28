@@ -26,5 +26,6 @@
 }
 main {
   background-color: var(--light-orange);
-  min-height: 40vh;
+  min-height: 70vh;
+  padding: 50px 0;
 }

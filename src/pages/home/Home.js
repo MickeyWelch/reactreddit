@@ -6,7 +6,7 @@ import Header from "../../components/header/Header";
 import redditLogo from '../../assets/logo.png';
 import {ReactComponent as LoaderImage} from "../../assets/reddit-app-loader.svg";
 import numberWithDots from "../../helpers/DotNotation";
-import truncateString from "../../helpers/truncateText";
+import TruncateString from "../../helpers/TruncateText";
 import Footer from "../../components/footer/Footer";
 
 function Home() {
@@ -33,10 +33,6 @@ function Home() {
         fetchData();
     }, [])
 
-    // if(loading) return (
-    //     <LoaderImage width="50px" height="50px" />
-    // );
-
     return (
         <>
             <Header
@@ -47,19 +43,21 @@ function Home() {
                 <div className="inner-container">
                     <h1>Hottest posts <span>on reddit right now</span></h1>
                     <div className='posts'>
+
                     {loading && <>
-                        <LoaderImage width="50px" height="50px"/>
-                        Loading posts...
+                        <LoaderImage width="50px" height="50px" />
                     </>
                     }
+
                     {error && <span>Er ging iets mis met het ophalen van de posts van Reddit... </span>}
+
                     {posts && <>
                         {posts.data.children.map((post) => {
                             return <article key={post.data.id}>
                                 <h3>
                                     <a href={post.data.url} target="_blank"
                                        title={`go to ${post.data.title} on reddit`}>
-                                        {truncateString(post.data.title)}
+                                        {TruncateString(post.data.title)}
                                     </a>
                                 </h3>
                                 <span className="meta">

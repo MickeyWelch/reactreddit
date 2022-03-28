@@ -1,5 +1,6 @@
 header {
     background: linear-gradient(90deg, rgba(231,97,58,1) 0%, rgba(221,48,56,1) 100%);
+    min-height: 20vh;
 }
 nav {
     display: flex;
@@ -20,6 +21,9 @@ nav ul li a {
     color: var(--white);
     text-decoration: none;
     font-weight: 800;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-transform: uppercase;
+    font-size: .8em;
 }
 
 .header-content {
@@ -30,7 +34,7 @@ nav ul li a {
 }
 
 header h1 {
-    font-size: 3em;
+    font-size: 2.6em;
     font-weight: 800;
 }
 header p {
