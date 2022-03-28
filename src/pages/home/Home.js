@@ -1,53 +1,79 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import './Home.css';
 import {Link} from "react-router-dom";
 import Header from "../../components/header/Header";
 import redditLogo from '../../assets/logo.png';
+import {ReactComponent as LoaderImage} from "../../assets/reddit-app-loader.svg";
 import numberWithDots from "../../helpers/DotNotation";
 import truncateString from "../../helpers/truncateText";
 import Footer from "../../components/footer/Footer";
 
 function Home() {
     const [posts, getPosts] = useState(null);
+    const [error, toggleError] = useState(false);
+    const [loading, toggleLoading] = useState(true);
 
     useEffect(() => {
         async function fetchData() {
+            toggleError(false);
             try {
+                toggleLoading(true);
                 const result = await axios.get('https://www.reddit.com/hot.json?limit=15');
                 console.log(result.data);
                 getPosts(result.data);
+                toggleLoading(false);
+
             } catch (e) {
                 console.error(e);
+                toggleError(true);
             }
         }
 
         fetchData();
     }, [])
 
+    // if(loading) return (
+    //     <LoaderImage width="50px" height="50px" />
+    // );
+
     return (
         <>
-            <p>{truncateString("Dit is een hele lange zin om te testen of mijn helperfunctie werkt in de react app voor reddit. met meer dan 100 tekens moet de tekst worden afgekapt.")}</p>
             <Header
                 logo={redditLogo}
                 title="Reddit"
             />
-            <main>
-                <h1>Hottest posts <span>on reddit right now</span></h1>
-                {posts && <>
-                    {posts.data.children.map((post) => {
-                        return <article key={post.data.id}>
-                            <h3><a href={post.data.url} target="_blank"
-                                   title={`go to ${post.data.title} on reddit`}>{post.data.title}</a></h3>
-                            <span className="meta">
+            <main className="outer-container">
+                <div className="inner-container">
+                    <h1>Hottest posts <span>on reddit right now</span></h1>
+                    <div className='posts'>
+                    {loading && <>
+                        <LoaderImage width="50px" height="50px"/>
+                        Loading posts...
+                    </>
+                    }
+                    {error && <span>Er ging iets mis met het ophalen van de posts van Reddit... </span>}
+                    {posts && <>
+                        {posts.data.children.map((post) => {
+                            return <article key={post.data.id}>
+                                <h3>
+                                    <a href={post.data.url} target="_blank"
+                                       title={`go to ${post.data.title} on reddit`}>
+                                        {truncateString(post.data.title)}
+                                    </a>
+                                </h3>
+                                <span className="meta">
                             <p><Link to={`/subreddit/${post.data.subreddit}`}>{post.data.subreddit_name_prefixed}</Link></p>
                             <p>Comments {numberWithDots(post.data.num_comments)} - Ups {numberWithDots(post.data.ups)}</p>
                             </span>
-                        </article>
-                    })}
-                </>
-                }
+                            </article>
+                        })}
+                    </>
+                    }
+                    </div>
+                </div>
             </main>
-            <Footer />
+            <Footer/>
         </>
     );
 }
