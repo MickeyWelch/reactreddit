@@ -1,0 +1,42 @@
+main h1 {
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 50px;
+    text-align: center;
+}
+main h1 span {
+    font-size: .4em;
+}
+.posts {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+article {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    flex-basis: 250px;
+    flex-grow: 0;
+    flex-shrink: 1;
+    margin-bottom: 25px;
+
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 3px;
+    box-shadow: 3px 3px 10px 0px #A6A6A6;
+}
+article h3 a {
+    text-decoration: none;
+}
+.meta {
+    margin-top: 10px;
+}
+.meta p {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.meta a {
+    color: var(--orange);
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+}
