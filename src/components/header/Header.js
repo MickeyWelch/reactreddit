@@ -8,8 +8,9 @@ function Header({logo, title, subtitle}) {
             <div className="inner-container">
                 <nav>
                     <ul>
-                        <li><NavLink to='/'>Home</NavLink></li>
-                        <li><NavLink to='/subreddit/subredditId'>Subreddit</NavLink></li>
+                        <li><NavLink to='/'>Hottest posts</NavLink></li>
+                        <li><NavLink to='/subreddit/reddit'>Reddit</NavLink></li>
+                        <li><NavLink to='/subreddit/memes'>Memes</NavLink></li>
                     </ul>
                 </nav>
                 <div className="header-content">
